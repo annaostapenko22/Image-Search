@@ -10,6 +10,7 @@ const ImageGallery = ({items}) =>
               src={item.webformatURL}
               data-source={item.largeImageURL}
               className={styles.ImageGalleryItem_image}
+              alt="image"
           ></img>
           </li>
         ))}
