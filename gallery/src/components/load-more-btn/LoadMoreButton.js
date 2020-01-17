@@ -2,32 +2,29 @@ import React, { Component } from "react";
 import styles from "./LoadMore.module.css";
 class LoadMoreButton extends Component {
   state = {
-    page: 2
+    page: this.props.currentPage
   };
 
-
-  componentDidMount(){
-      console.log("render")
+  componentDidMount() {
+    console.log("render");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.page !== this.state.page) {
+      this.props.page(this.state.page);
+    }
   }
 
-
   handleClick = () => {
-    console.log("click");
-    this.setState((state)=> {
-        const res = {
-            page: state.page + 1
-        }
-        return res;
-    })
-    this.props.page(this.state.page)
-   console.log(this.state)
+    this.setState(state => ({
+      page: state.page + 1
+    }));
+
+    console.log("page", this.state);
   };
 
   render() {
-
-    
     return (
-      <button className={styles.Button} onClick={()=>this.handleClick()}>
+      <button className={styles.Button} onClick={() => this.handleClick()}>
         Load more
       </button>
     );
